@@ -18,37 +18,56 @@
   <h1>Política de Privacidade — Create Video Express</h1>
   <p><em>Última atualização: 23 de novembro de 2026</em></p>
 
-  <h2>1. Sobre o aplicativo</h2>
-  <p>O Create Video Express é um aplicativo de desktop de uso pessoal/interno que produz e publica vídeos nos canais do próprio usuário. Não é um serviço comercial para terceiros.</p>
+  <h2>1. Sobre este documento e o aplicativo</h2>
+  <p>Esta Política de Privacidade descreve como o <strong>Create Video Express</strong>, aplicativo de desktop desenvolvido e operado por Julivaldo Oliveira, coleta, usa, armazena e protege dados quando o usuário conecta sua conta Google/YouTube. O aplicativo é de uso pessoal/interno: não é um serviço comercial para terceiros e não possui cadastro de usuários externos.</p>
 
   <h2>2. Dados que acessamos</h2>
-  <p>Mediante autorização explícita do usuário (OAuth do Google), o aplicativo acessa:</p>
+  <p>Mediante autorização explícita do usuário via OAuth 2.0 do Google, o aplicativo acessa somente os dados do canal autorizado:</p>
   <ul>
-    <li>Identidade básica do canal do YouTube conectado (nome e ID do canal);</li>
-    <li>Playlists e lista de vídeos do próprio canal;</li>
-    <li>Estatísticas de visualizações e receita do próprio canal (YouTube Analytics);</li>
-    <li>Permissão para enviar vídeos, thumbnails e legendas ao próprio canal.</li>
+    <li><strong>Identidade do canal</strong> — nome e ID do canal do YouTube conectado (escopo <code>youtube.readonly</code>);</li>
+    <li><strong>Playlists e vídeos</strong> — lista de playlists e vídeos do próprio canal, para organizar publicações (escopo <code>youtube.readonly</code>);</li>
+    <li><strong>Estatísticas</strong> — relatórios de visualizações, tempo de exibição e receita do próprio canal (escopos <code>yt-analytics.readonly</code> e <code>yt-analytics-monetary.readonly</code>);</li>
+    <li><strong>Permissão de publicação</strong> — enviar vídeos, thumbnails e legendas ao próprio canal (escopos <code>youtube.upload</code> e <code>youtubepartner</code>).</li>
   </ul>
+  <p>O aplicativo <strong>não</strong> coleta dados pessoais de terceiros, não acessa contatos, e-mail, localização, histórico de navegação ou qualquer dado fora dos escopos listados.</p>
 
   <h2>3. Como usamos os dados</h2>
+  <p>Os dados acessados são usados exclusivamente para:</p>
   <ul>
-    <li>Publicar vídeos produzidos pelo usuário em seu próprio canal, com metadados definidos por ele;</li>
-    <li>Exibir estatísticas do canal dentro do aplicativo;</li>
-    <li>Organizar vídeos em playlists do próprio canal, quando solicitado.</li>
+    <li>Publicar no canal do usuário os vídeos que ele próprio produziu no aplicativo, com título, descrição, tags, thumbnail, legendas e visibilidade definidos por ele, em datas por ele agendadas;</li>
+    <li>Exibir, dentro do aplicativo, o nome do canal conectado, playlists e estatísticas do próprio canal;</li>
+    <li>Manter o funcionamento das publicações agendadas enquanto a conexão estiver ativa.</li>
   </ul>
-  <p>Nenhum dado é vendido, compartilhado ou usado para publicidade.</p>
+  <p><strong>Nenhum dado é vendido, alugado, compartilhado com terceiros ou usado para publicidade, marketing ou perfilamento.</strong> Não transferimos dados do usuário para nenhum serviço externo além das próprias APIs do Google/YouTube e da infraestrutura privada do operador descrita abaixo.</p>
 
-  <h2>4. Armazenamento</h2>
-  <p>Tokens de acesso ficam armazenados <strong>localmente no computador do usuário</strong>, criptografados (Windows DPAPI). Quando o usuário usa o serviço de publicação agendada (worker próprio no Cloudflare), os tokens ficam cifrados em banco privado (AES-GCM) acessível apenas pelo operador. Não há banco de dados de usuários nem coleta de dados pessoais de terceiros.</p>
+  <h2>4. Onde os dados são armazenados</h2>
+  <ul>
+    <li><strong>No computador do usuário:</strong> os tokens de acesso OAuth e configurações ficam armazenados localmente, criptografados com a API de proteção de dados do sistema operacional (Windows DPAPI);</li>
+    <li><strong>No serviço de agendamento do operador:</strong> quando o usuário usa a publicação agendada em nuvem, os tokens são cifrados (AES-256-GCM) e guardados em banco de dados privado (Cloudflare D1) acessível somente pelo operador; os arquivos de vídeo ficam em armazenamento privado (Cloudflare R2) pelo período necessário à publicação.</li>
+  </ul>
+  <p>Não mantemos banco de dados de usuários, nem servidores de coleta de dados pessoais.</p>
 
-  <h2>5. Revogação</h2>
-  <p>O usuário pode desconectar um canal dentro do aplicativo ou revogar o acesso a qualquer momento em <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Ao revogar, o aplicativo perde o acesso imediatamente.</p>
+  <h2>5. Retenção e exclusão</h2>
+  <ul>
+    <li>Os tokens ficam armazenados enquanto a conexão estiver ativa;</li>
+    <li>O usuário pode desconectar um canal dentro do aplicativo, o que apaga o token local, ou revogar o acesso em <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> — a revogação interrompe o acesso imediatamente;</li>
+    <li>Vídeos armazenados temporariamente para publicação agendada são excluídos após o envio ou dentro do prazo de retenção configurado pelo operador.</li>
+  </ul>
 
-  <h2>6. APIs utilizadas</h2>
-  <p>O aplicativo utiliza a YouTube Data API v3 e a YouTube Analytics API, em conformidade com os <a href="https://developers.google.com/youtube/terms/api-services-terms-of-service">Termos de Serviço das APIs do YouTube</a> e a <a href="https://policies.google.com/privacy">Política de Privacidade do Google</a>.</p>
+  <h2>6. Segurança</h2>
+  <p>Os segredos são protegidos por criptografia em repouso (DPAPI no desktop; AES-256-GCM na nuvem privada), as comunicações ocorrem exclusivamente por HTTPS, e o serviço de agendamento exige token de autenticação próprio em todas as operações.</p>
 
-  <h2>7. Contato</h2>
-  <p>Dúvidas sobre esta política podem ser enviadas pelo canal de suporte do aplicativo.</p>
+  <h2>7. APIs do Google e serviços do YouTube</h2>
+  <p>O aplicativo utiliza a YouTube Data API v3 e a YouTube Analytics API em conformidade com os <a href="https://developers.google.com/terms">Termos de Serviço das APIs do Google</a>, os <a href="https://developers.google.com/youtube/terms/api-services-terms-of-service">Termos dos Serviços de API do YouTube</a> e a <a href="https://policies.google.com/privacy">Política de Privacidade do Google</a>. O aplicativo não gera imagens com IA e não produz conteúdo íntimo não consensual.</p>
+
+  <h2>8. Crianças</h2>
+  <p>O aplicativo não é direcionado a crianças e não coleta intencionalmente dados de menores de idade.</p>
+
+  <h2>9. Alterações nesta política</h2>
+  <p>Atualizações desta política serão publicadas nesta mesma página, com a data de revisão atualizada no topo.</p>
+
+  <h2>10. Contato</h2>
+  <p>Dúvidas sobre privacidade e proteção de dados podem ser enviadas pelo canal de suporte do aplicativo.</p>
 
   <p><a href="/">Voltar para a página inicial</a></p>
 </main>
